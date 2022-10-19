@@ -1,15 +1,12 @@
-import io
-import sys
+import collections
+n = int(input())
+a = list(map(int, input().split()))
 
-_INPUT = """\
-3
-5
-10
-15
-"""
+c = collections.Counter(a)
+s = 0
 
-sys.stdin = io.StringIO(_INPUT)
+for i in list(c.values()):
+    s += i*(i-1) // 2
 
-from collections import deque
-n=int(input())
-li = list(map(int,input().split()))
+for i in a:
+    print(s-(c[i]-1))
