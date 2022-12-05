@@ -1,3 +1,4 @@
+from audioop import reverse
 import io
 import sys
 
@@ -7,19 +8,16 @@ _INPUT = """\
 """
 
 sys.stdin = io.StringIO(_INPUT)
-
+from collections import Counter
 n = int(input())
 li = list(map(int,input().split()))
 
-set_ = list(set(li))
+li = Counter(li)
 
-set_.sort()
+b = sorted(list(set(li)),reverse=True)
 
-length = len(set_)
+for i in b:
+    print(li[i])
 
-ans = []
-for i in li:
-    ans.append(length - set_.index(i)-1)
-
-for i in range(n):
-    print(ans.count(i))
+for i in range(n - len(li)):
+    print(0)
